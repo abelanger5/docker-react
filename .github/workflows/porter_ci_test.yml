@@ -24,6 +24,17 @@ jobs:
       id: configure_porter
       run: |2
       
+        sudo cat > ~/.docker/config.json <<EOF
+        {
+          "auths": {
+            "https://index.docker.io/v1/": {}
+          },
+          "credsStore": "desktop",
+          "credHelpers": {},
+          "experimental": "disabled",
+          "stackOrchestrator": "swarm"
+        }
+        EOF
         porter config set-host https://dashboard.dev.getporter.dev
         porter auth login --token ${{secrets.PORTER_TOKEN_1}}
         sudo porter docker configure
