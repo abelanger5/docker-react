@@ -23,7 +23,9 @@ jobs:
     - name: Configure Porter
       id: configure_porter
       run: |2
-
+    
+        echo $HOME
+        sudo echo $HOME
         porter auth login --token ${{secrets.PORTER_TOKEN_234}}
         sudo porter docker configure
     - name: Docker build, push
