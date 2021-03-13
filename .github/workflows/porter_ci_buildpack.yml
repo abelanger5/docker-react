@@ -35,7 +35,7 @@ jobs:
         sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
         sudo apt-get update
         sudo apt-get install pack-cli
-        pack build gcr.io/porter-dev-273614/ci-buildpack-default:$(git rev-parse --short HEAD) --path ./ --builder heroku/buildpacks:18
+        sudo pack build gcr.io/porter-dev-273614/ci-buildpack-default:$(git rev-parse --short HEAD) --path ./ --builder heroku/buildpacks:18
         sudo docker push gcr.io/porter-dev-273614/ci-buildpack-default:$(git rev-parse --short HEAD)
     - name: Deploy on Porter
       id: deploy_porter
