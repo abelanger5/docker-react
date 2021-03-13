@@ -31,10 +31,10 @@ jobs:
       run: |2
 
         export $(echo "${{secrets.ENV_CI_WITH_DOCKER}}" | xargs)
-        sudo docker build . --file ./Dockerfile -t gcr.io/porter-dev-273614/ci-with-docker-default:$(git rev-parse --short HEAD)
-        sudo docker push gcr.io/porter-dev-273614/ci-with-docker-default:$(git rev-parse --short HEAD)
+        sudo docker build . --file ./Dockerfile -t gcr.io/porter-dev-273614/ci-with-docker-default-new:$(git rev-parse --short HEAD)
+        sudo docker push gcr.io/porter-dev-273614/ci-with-docker-default-new:$(git rev-parse --short HEAD) || sudo docker push gcr.io/porter-dev-273614/ci-with-docker-default-new:$(git rev-parse --short HEAD)
     - name: Deploy on Porter
       id: deploy_porter
       run: |2
 
-        curl -X POST "https://dashboard.getporter.dev/api/webhooks/deploy/${{secrets.WEBHOOK_CI_WITH_DOCKER}}?commit=$(git rev-parse --short HEAD)&repository=gcr.io/porter-dev-273614/ci-with-docker-default"
+        curl -X POST "https://dashboard.getporter.dev/api/webhooks/deploy/${{secrets.WEBHOOK_CI_WITH_DOCKER}}?commit=$(git rev-parse --short HEAD)&repository=gcr.io/porter-dev-273614/ci-with-docker-default-new"
