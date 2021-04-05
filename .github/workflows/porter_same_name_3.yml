@@ -35,10 +35,10 @@ jobs:
         sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
         sudo apt-get update
         sudo apt-get install pack-cli
-        sudo pack build gcr.io/porter-dev-273614/same-name-3-default:$(git rev-parse --short HEAD) --path ./ --builder heroku/buildpacks:18 --env-file ./env_porter
-        sudo docker push gcr.io/porter-dev-273614/same-name-3-default:$(git rev-parse --short HEAD)
+        sudo pack build 393629051022.dkr.ecr.us-east-2.amazonaws.com/same-name-3-default:$(git rev-parse --short HEAD) --path ./ --builder heroku/buildpacks:18 --env-file ./env_porter
+        sudo docker push 393629051022.dkr.ecr.us-east-2.amazonaws.com/same-name-3-default:$(git rev-parse --short HEAD)
     - name: Deploy on Porter
       id: deploy_porter
       run: |2
 
-        curl -X POST "https://dashboard.getporter.dev/api/webhooks/deploy/${{secrets.WEBHOOK_SAME_NAME_3}}?commit=$(git rev-parse --short HEAD)&repository=gcr.io/porter-dev-273614/same-name-3-default"
+        curl -X POST "https://dashboard.getporter.dev/api/webhooks/deploy/${{secrets.WEBHOOK_SAME_NAME_3}}?commit=$(git rev-parse --short HEAD)&repository=393629051022.dkr.ecr.us-east-2.amazonaws.com/same-name-3-default"
