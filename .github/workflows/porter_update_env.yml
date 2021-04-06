@@ -32,6 +32,7 @@ jobs:
 
         export $(echo "${{secrets.ENV_UPDATE_ENV}}" | xargs)
         echo "${{secrets.ENV_UPDATE_ENV}}" > ./env_porter
+        echo $TESTING
         sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
         sudo apt-get update
         sudo apt-get install pack-cli
